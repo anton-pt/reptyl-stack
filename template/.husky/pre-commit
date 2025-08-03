@@ -1,0 +1,8 @@
+echo "Running lint check before commit..."
+if ! npm run lint; then
+  echo "\n❌ Linting failed! Please fix the issues before committing."
+  echo "💡 You can run 'npm run lint:fix' to automatically fix some issues.\n"
+  exit 1
+fi
+
+echo "✅ Linting passed!"

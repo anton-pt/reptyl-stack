@@ -1,0 +1,42 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "dev": {
+      "cache": false,
+      "interactive": true,
+      "with": [
+        "//#docker-compose",
+        "@reptyl/restate-service#register:watch",
+        "build-package:watch"
+      ]
+    },
+    "build-app": {
+      "dependsOn": ["^build-app"],
+      "outputs": ["dist/**"]
+    },
+    "build-package": {
+      "dependsOn": ["^build-package"],
+      "outputs": ["dist/**"]
+    },
+    "build-package:watch": {
+      "cache": false,
+      "dependsOn": ["^build-package:watch"],
+      "outputs": ["dist/**"]
+    },
+    "build-restate-service": {
+      "dependsOn": ["^build-restate-service"],
+      "outputs": ["dist/**"]
+    },
+    "clean": {},
+    "test": {},
+    "test:watch": {
+      "cache": false
+    },
+    "register:watch": {
+      "cache": false
+    },
+    "type-check": {},
+    "//#docker-compose": {}
+  }
+}

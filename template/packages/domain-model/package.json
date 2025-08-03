@@ -1,0 +1,20 @@
+{
+  "name": "@reptyl/domain-model",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build-package": "tsc --build",
+    "build-package:watch": "tsc --noEmitOnError --watch",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "zod": "^3.25.74"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "vitest": "^3.2.4"
+  }
+}

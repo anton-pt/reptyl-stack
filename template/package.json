@@ -1,0 +1,49 @@
+{
+  "devDependencies": {
+    "@eslint-react/eslint-plugin": "^1.52.2",
+    "@eslint/css": "^0.9.0",
+    "@eslint/js": "^9.30.1",
+    "@eslint/json": "^0.12.0",
+    "@eslint/markdown": "^6.6.0",
+    "@graphql-codegen/cli": "^5.0.7",
+    "@graphql-codegen/typescript-resolvers": "^4.5.1",
+    "eslint": "^9.30.1",
+    "eslint-plugin-require-extensions": "^0.1.3",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-yml": "^1.18.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.6.2",
+    "prettier-plugin-tailwindcss": "^0.6.13",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.35.1"
+  },
+  "lintStaged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint",
+      "prettier --write --config ./.prettierrc.json"
+    ]
+  },
+  "packageManager": "npm@11.4.2",
+  "scripts": {
+    "build-app": "turbo run build-app",
+    "build-package": "turbo run build-package",
+    "build-restate-service": "turbo run build-restate-service",
+    "clean": "turbo run clean",
+    "dev": "turbo run build-package && turbo run dev",
+    "docker-compose": "docker compose -p reptyl-stack up",
+    "generate": "graphql-codegen",
+    "lint": "eslint --cache .",
+    "lint:fix": "eslint --cache --fix .",
+    "preinstall": "npx only-allow npm",
+    "prepare": "husky",
+    "sqitch": "SQITCH_TARGET=db:pg://postgres:reptyl-stack@localhost:5432/reptyl-stack sqitch --chdir ./db/migrations",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "type-check": "turbo run type-check"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

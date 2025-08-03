@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "rootDirs": [
+      "src"
+    ],
+    "outDir": "dist",
+    "lib": [
+      "es2022"
+    ],
+    "target": "es2022",
+    "module": "node18",
+    "declaration": true,
+    "moduleResolution": "node16",
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "types": [
+      "node"
+    ],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true
+  },
+}

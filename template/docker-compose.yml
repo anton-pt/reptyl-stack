@@ -1,0 +1,47 @@
+services:
+  restate-dev:
+    image: docker.restate.dev/restatedev/restate:1.4
+    depends_on:
+      - db-dev
+    ports:
+      - "8080:8080"  # Ingress
+      - "9070:9070"  # Admin
+      - "9071:9071"
+    environment:
+      RESTATE_NODE_NAME: reptyl-stack-restate
+    volumes:
+      - restate-data:/restate-data 
+    healthcheck:
+      test: ["CMD", "restate", "whoami"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+  db-dev:
+    image: postgres:17
+    restart: always
+    ports:
+      - "5432:5432"  # Postgres
+    environment:
+      POSTGRES_DB: reptyl-stack
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: reptyl-stack
+    healthcheck:
+      test: ["CMD-SHELL", "PGPASSWORD=reptyl-stack pg_isready -U postgres -d reptyl-stack"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+  db-migrations:
+    image: sqitch/sqitch
+    depends_on:
+      - db-dev
+    volumes:
+      - ./db/migrations:/sqitch/migrations
+        
+    entrypoint: ["sqitch", "deploy", "--target", "--chdir", "/sqitch/migrations", "db:pg://postgres:reptyl-stack@db-dev/reptyl-stack", "--verify"]
+
+# We create a volume to persist data across container starts; delete it via `docker volume rm restate-data` if you want to start a fresh cluster
+volumes:
+  restate-data:

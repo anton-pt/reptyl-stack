@@ -1,0 +1,23 @@
+{
+  "name": "@reptyl/persistence",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build-package": "tsc --build",
+    "build-package:watch": "tsc --noEmitOnError --watch",
+    "test": "vitest run",
+    "test:watch": "vitest watch"
+  },
+  "dependencies": {
+    "@reptyl/domain-model": "*",
+    "pg": "^8.16.3",
+    "pino": "^9.7.0",
+    "typeorm": "^0.3.25"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.10",
+    "vitest": "^3.2.4"
+  }
+}

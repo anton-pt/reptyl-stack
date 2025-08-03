@@ -1,0 +1,58 @@
+scalar DateTime
+
+type Conversation {
+  id: ID!
+  title: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  messages: [Message!]
+}
+
+enum Role {
+  USER
+  ASSISTANT
+}
+
+type Message {
+  id: ID!
+  content: String!
+  role: Role!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ConnectedToConversation {
+  conversationId: ID!
+}
+
+type ConversationMessage {
+  id: ID!
+  role: Role!
+  content: String!
+  createdAt: DateTime!
+}
+
+type ResponsePart {
+  userMessageId: ID!
+  role: Role!
+  responsePart: String!
+}
+
+union ConversationUpdate =
+  | ConnectedToConversation
+  | ConversationMessage
+  | ResponsePart
+
+type Query {
+  conversations: [Conversation!]!
+  conversation(id: ID!): Conversation
+}
+
+type Mutation {
+  createConversation(title: String!): Conversation!
+  sendMessage(conversationId: ID!, message: String!): ID!
+}
+
+type Subscription {
+  conversationUpdated(conversationId: ID!): ConversationUpdate!
+}

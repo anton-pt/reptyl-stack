@@ -1,0 +1,6 @@
+%syntax-version=1.0.0
+%project=reptyl-stack
+
+appschema 2025-07-05T08:25:58Z Anton Tcholakov <anton.pt@pm.me> # Add schema for all reptyl-stack objects.
+conversations [appschema] 2025-07-05T08:46:31Z Anton Tcholakov <anton.pt@pm.me> # Add table for conversations.
+messages [conversations] 2025-07-05T10:31:47Z Anton Tcholakov <anton.pt@pm.me> # Add table for conversation messages.

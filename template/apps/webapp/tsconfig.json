@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "rootDirs": [
+      "src"
+    ],
+    "outDir": "dist",
+    "lib": [
+      "es2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "types": [
+      "node",
+      "react"
+    ],
+    "skipLibCheck": true
+  }
+}
