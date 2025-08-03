@@ -45,7 +45,6 @@ export const makeDependencies = async (
       secretKey: process.env.LANGFUSE_SECRET_KEY!,
       publicKey: process.env.LANGFUSE_PUBLIC_KEY!,
       baseUrl: process.env.LANGFUSE_HOST!,
-      debug: true,
     }),
     instrumentations: [getNodeAutoInstrumentations()],
   });

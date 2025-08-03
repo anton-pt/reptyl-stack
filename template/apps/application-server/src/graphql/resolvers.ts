@@ -107,7 +107,6 @@ export const resolvers: Resolvers<Dependencies> = {
         };
 
         const cleanup = () => {
-          console.log('Cleaning up WebSocket connection');
           isConnected = false;
           if (
             ws.readyState === WebSocket.OPEN ||
