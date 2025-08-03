@@ -110,6 +110,11 @@ To run the Reptyl Stack, you will need to have Docker installed. You can follow 
 To manage database schema changes, you will need to have Sqitch installed. You can follow the instructions on the
 [Sqitch website](https://sqitch.org/download/) to install Sqitch on your machine.
 
+#### fswatch
+
+If running on Mac, you'll also need to install `fswatch` via [Homebrew](https://brew.sh/) by typing
+`brew install fswatch`.
+
 #### Langfuse
 
 To use Langfuse for observability, you will need to set up a Langfuse account and obtain an API key. Although it is
