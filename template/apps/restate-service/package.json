@@ -15,15 +15,18 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^1.2.12",
+    "@ai-sdk/anthropic": "^2.0.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.62.0",
+    "@opentelemetry/sdk-node": "^0.203.0",
     "@reptyl/domain-model": "*",
     "@reptyl/persistence": "*",
     "@restatedev/restate-sdk": "^1.7.2",
     "@restatedev/restate-sdk-zod": "^1.7.2",
-    "ai": "^4.3.16",
+    "ai": "^5.0.0",
     "axios": "^1.10.0",
     "langfuse": "^3.38.2",
     "langfuse-core": "^3.38.2",
+    "langfuse-vercel": "^3.38.4",
     "pino": "^9.7.0",
     "zod": "^3.25.74"
   },

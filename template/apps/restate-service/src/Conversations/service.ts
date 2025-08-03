@@ -1,6 +1,6 @@
 import * as restate from '@restatedev/restate-sdk';
 import { serde } from '@restatedev/restate-sdk-zod';
-import { streamText } from 'ai';
+import { generateText, streamText } from 'ai';
 import { anthropic } from '@ai-sdk/anthropic';
 
 import { Dependencies } from '../dependencies.js';
@@ -235,7 +235,16 @@ export const makeConversationsService = ({ database }: Dependencies) => {
               })),
               system: 'You are a helpful assistant.',
               temperature: 0.7,
-              maxTokens: 1000,
+              maxOutputTokens: 1000,
+              experimental_telemetry: {
+                isEnabled: true,
+                functionId: 'ConversationsService.getAssistantResponse',
+                metadata: {
+                  sessionId: conversationId,
+                  userMessageId: userMessageId,
+                  messageCount: messages.length,
+                },
+              },
             });
 
             const messageId = ctx.rand.uuidv4();

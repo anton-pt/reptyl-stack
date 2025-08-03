@@ -9,6 +9,8 @@ const dependencies = await makeDependencies(
   process.env.NODE_ENV !== 'production'
 );
 
+const { langfuse, otelSdk } = dependencies;
+
 let restateEndpoint = restate
   .endpoint()
   .setLogger((meta, message, ...o) => {
@@ -20,3 +22,17 @@ let restateEndpoint = restate
   .bind(Conversations.makeConversationsService(dependencies));
 
 restateEndpoint.listen(9080);
+
+process.on('SIGINT', async () => {
+  console.log('Received SIGINT, shutting down gracefully...');
+  await langfuse.flushAsync();
+  await otelSdk.shutdown();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  console.log('Received SIGTERM, shutting down gracefully...');
+  await langfuse.flushAsync();
+  await otelSdk.shutdown();
+  process.exit(0);
+});
